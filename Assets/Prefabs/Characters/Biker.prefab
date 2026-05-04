@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1474345136}
   - component: {fileID: 1474345135}
   - component: {fileID: 1474345134}
-  - component: {fileID: -4857888357141060278}
+  - component: {fileID: 7094630113581607377}
   m_Layer: 0
   m_Name: Biker
   m_TagString: Untagged
@@ -167,7 +167,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &1474345134
 Animator:
   serializedVersion: 7
@@ -190,7 +190,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-4857888357141060278
+--- !u!114 &7094630113581607377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,15 +199,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1474345133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1252088aac2e2043b19f99c1f61ce9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 66bc4c1a2cce5234bb57b8e782d86f3c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControllerPersonaje
+  m_EditorClassIdentifier: '::'
+  velocidad: 3.5
   animator: {fileID: 1474345134}
-  movimientoSpeed: 5
-  capaPiso:
+  fuerzaSalto: 4.5
+  longitudRaycast: 0.9
+  capaSuelo:
     serializedVersion: 2
     m_Bits: 64
-  groundCheckRadius: 0.8
-  detectarPiso: {fileID: 0}
-  estaPiso: 1
-  vidas: 5
+  fuerzaRebote: 5
