@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
     public float velocidad = 5;
     public Animator animator;
     //salto
@@ -14,15 +15,48 @@ public class PlayerController : MonoBehaviour
     //Daño 
     private bool recibiendoDanio;
     public float fuerzaRebote = 5f;
+
+    // Atacar
+    private bool atacando;
+    
+    //vidas
+    
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
          rb = GetComponent<Rigidbody2D>();
+         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+
+        if(!atacando)
+        {
+            Movimiento();
+        // Pa no usar otro objeto y detectar el suelo
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, longitudRaycast, capaSuelo);
+	    enSuelo = hit.collider != null; // si la linea colisiona con el suelo sera verdadero
+
+        if (enSuelo && Input.GetKeyDown(KeyCode.Space) && !recibiendoDanio)
+        {
+            rb.AddForce(new Vector2(0f, fuerzaSalto), ForceMode2D.Impulse);
+        }
+
+        }
+        if (enSuelo && Input.GetKeyDown(KeyCode.Z)  && !atacando )
+        {
+            Atacar();
+        }
+
+	animator.SetBool("ensuelo", enSuelo);
+	animator.SetBool("recibeDanio", recibiendoDanio);
+    animator.SetBool("Atacando", atacando); 
+    }
+
+    public void Movimiento()
     {
         float inputX = Input.GetAxis("Horizontal");
         float velocidadX = inputX * Time.deltaTime * velocidad;
@@ -41,18 +75,6 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(velocidadX + posicion.x, posicion.y, posicion.z);
         }
-	    
-        // Pa no usar otro objeto y detectar el suelo
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, longitudRaycast, capaSuelo);
-        
-	enSuelo = hit.collider != null; // si la linea colisiona con el suelo sera verdadero
-
-        if (enSuelo && Input.GetKeyDown(KeyCode.Space) && !recibiendoDanio)
-        {
-            rb.AddForce(new Vector2(0f, fuerzaSalto), ForceMode2D.Impulse);
-        }
-	animator.SetBool("ensuelo", enSuelo);
-	animator.SetBool("recibeDanio", recibiendoDanio);
     }
 
     public void RecibeDanio(Vector2 direccion, int cantDanio)
@@ -70,9 +92,19 @@ public class PlayerController : MonoBehaviour
 	    recibiendoDanio = false;
         rb.linearVelocity = Vector2.zero; // para que el personaje no siga rebotando despues de recibir daño
     }
+
+    public void Atacar()
+    {
+       atacando = true;
+    }
+    public void DesactivaAtaque()
+    {
+        atacando = false;
+    }
     void OnDrawGizmos() // pa dibujar el colisionador del raycast
     {
 	Gizmos.color = Color.red;
 	Gizmos.DrawLine(transform.position, transform.position + Vector3.down * longitudRaycast);
     }
+    
 }
