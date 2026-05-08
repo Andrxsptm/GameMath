@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 public class SelectorNivelPersonaje : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class SelectorNivelPersonaje : MonoBehaviour
 
     [Header("Texto (opcional)")]
     public TextMeshProUGUI textoPersonajeActual;
+    public List<Sprite> sprites = new List<Sprite>();
 
     [Header("Referencia Transición")]
     public TransicionEscena transicionEscena;
@@ -27,7 +30,7 @@ public class SelectorNivelPersonaje : MonoBehaviour
         // Configurar estado inicial
         if (panelPersonajes != null)
             panelPersonajes.SetActive(false);
-        
+
         if (panelNiveles != null)
             panelNiveles.SetActive(true);
 
@@ -35,14 +38,14 @@ public class SelectorNivelPersonaje : MonoBehaviour
         // btn_atras = PreviousPersonaje (retroceder personaje)
         if (btn_atras != null)
             btn_atras.onClick.AddListener(PreviousPersonaje);
-        
+
         // btn_siguiente = NextPersonaje (siguiente personaje)
         if (btn_siguiente != null)
             btn_siguiente.onClick.AddListener(SiguientePersonaje);
-        
+
         if (btn_select != null)
             btn_select.onClick.AddListener(IniciarNivel);
-        
+
         // btn_close = Volver al panel de niveles
         if (btn_close != null)
             btn_close.onClick.AddListener(IrAtras);
@@ -58,11 +61,11 @@ public class SelectorNivelPersonaje : MonoBehaviour
     public void SeleccionarNivel(string nombreNivel)
     {
         nivelSeleccionado = nombreNivel;
-        
+
         // Cambiar de panel
         if (panelNiveles != null)
             panelNiveles.SetActive(false);
-        
+
         if (panelPersonajes != null)
             panelPersonajes.SetActive(true);
 
@@ -75,7 +78,7 @@ public class SelectorNivelPersonaje : MonoBehaviour
         // Volver al panel de niveles
         if (panelPersonajes != null)
             panelPersonajes.SetActive(false);
-        
+
         if (panelNiveles != null)
             panelNiveles.SetActive(true);
 
@@ -136,4 +139,5 @@ public class SelectorNivelPersonaje : MonoBehaviour
             textoPersonajeActual.text = CharacterSelector.Instance.nombrePersonajeActual;
         }
     }
+    
 }
