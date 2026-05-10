@@ -48,13 +48,13 @@ public class CharacterSelector : MonoBehaviour
 
     public void SiguientePersonaje()
     {
-        int nuevoIndex = (CurrentCharacterIndex + 1) % personajes.Count;
+        int nuevoIndex = (CurrentCharacterIndex + 1 + personajes.Count) % personajes.Count;
         SetPersonaje(nuevoIndex);
     }
 
-    public void PreviousPersonaje()
+    public void AnteriorPersonaje()
     {
-        int nuevoIndex = (CurrentCharacterIndex - 1 + personajes.Count) % personajes.Count;
+       int nuevoIndex = (CurrentCharacterIndex - 1 ) % personajes.Count;
         SetPersonaje(nuevoIndex);
     }
 

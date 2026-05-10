@@ -16,9 +16,11 @@ public class SelectorNivelPersonaje : MonoBehaviour
     public Button btn_select;
     public Button btn_close;
 
-    [Header("Texto (opcional)")]
-    public TextMeshProUGUI textoPersonajeActual;
+    [Header("Vista de personaje")]
+    public TextMeshProUGUI textoPersonajeSeleccionado;
+    public Image imagenPersonaje; 
     public List<Sprite> sprites = new List<Sprite>();
+
 
     [Header("Referencia Transición")]
     public TransicionEscena transicionEscena;
@@ -27,36 +29,45 @@ public class SelectorNivelPersonaje : MonoBehaviour
 
     private void Start()
     {
-        // Configurar estado inicial
+        ConfigurarEstadoInicial();
+        ConfigurarBotones();
+        ActualizarVistaPersonaje();
+    }
+
+    private void ConfigurarEstadoInicial()
+    {
         if (panelPersonajes != null)
             panelPersonajes.SetActive(false);
 
         if (panelNiveles != null)
             panelNiveles.SetActive(true);
 
-        // Asignar funciones a los botones del panel de personajes
-        // btn_atras = PreviousPersonaje (retroceder personaje)
-        if (btn_atras != null)
-            btn_atras.onClick.AddListener(PreviousPersonaje);
-
-        // btn_siguiente = NextPersonaje (siguiente personaje)
-        if (btn_siguiente != null)
-            btn_siguiente.onClick.AddListener(SiguientePersonaje);
-
-        if (btn_select != null)
-            btn_select.onClick.AddListener(IniciarNivel);
-
-        // btn_close = Volver al panel de niveles
-        if (btn_close != null)
-            btn_close.onClick.AddListener(IrAtras);
-
-        // Asegurar que el botón next esté habilitado
-        if (btn_siguiente != null)
-            btn_siguiente.interactable = true;
-
-        // Actualizar texto inicial
-        ActualizarTextoPersonaje();
     }
+    private void ConfigurarBotones()
+    {
+        if (btn_atras != null)
+        {
+           
+             btn_atras.onClick.AddListener(AnteriorPersonaje);
+        }
+        if (btn_siguiente != null)
+        {
+           
+            btn_siguiente.onClick.AddListener(SiguientePersonaje);
+        }
+        if (btn_select != null)
+        {
+            btn_select.onClick.RemoveAllListeners();
+            btn_select.onClick.AddListener(IniciarNivel);
+        }
+        if (btn_close != null)
+        {
+            btn_close.onClick.RemoveAllListeners();
+            btn_close.onClick.AddListener(IrAtras);
+        }
+    }
+
+       
 
     public void SeleccionarNivel(string nombreNivel)
     {
@@ -82,7 +93,6 @@ public class SelectorNivelPersonaje : MonoBehaviour
         if (panelNiveles != null)
             panelNiveles.SetActive(true);
 
-        Debug.Log("Volviendo a selección de nivel");
     }
 
     public void SiguientePersonaje()
@@ -90,17 +100,17 @@ public class SelectorNivelPersonaje : MonoBehaviour
         if (CharacterSelector.Instance != null)
         {
             CharacterSelector.Instance.SiguientePersonaje();
-            ActualizarTextoPersonaje();
+            ActualizarVistaPersonaje();
             Debug.Log("Siguiente personaje");
         }
     }
 
-    public void PreviousPersonaje()
+    public void AnteriorPersonaje()
     {
         if (CharacterSelector.Instance != null)
         {
-            CharacterSelector.Instance.PreviousPersonaje();
-            ActualizarTextoPersonaje();
+            CharacterSelector.Instance.AnteriorPersonaje();
+            ActualizarVistaPersonaje();
             Debug.Log("Personaje anterior");
         }
     }
@@ -132,12 +142,39 @@ public class SelectorNivelPersonaje : MonoBehaviour
         }
     }
 
+    private void ActualizarVistaPersonaje()
+    {
+        if (CharacterSelector.Instance == null)
+        {
+            Debug.LogError("CharacterSelector no encontrado");
+            return;
+        }
+        ActualizarTextoPersonaje();
+        ActualizaeImagenPersonaje();
+    }
+
     private void ActualizarTextoPersonaje()
     {
-        if (textoPersonajeActual != null && CharacterSelector.Instance != null)
+        if (textoPersonajeSeleccionado == null)
         {
-            textoPersonajeActual.text = CharacterSelector.Instance.nombrePersonajeActual;
+            return;
         }
+        textoPersonajeSeleccionado.text = CharacterSelector.Instance.nombrePersonajeActual;
+        
+    }
+    private void ActualizaeImagenPersonaje()
+    {
+        if (imagenPersonaje == null)
+        {
+            return;
+        }
+        int indiceActual = CharacterSelector.Instance.CurrentCharacterIndex;
+        if (indiceActual < 0 || indiceActual >= sprites.Count)
+        {
+            Debug.LogError("Índice de personaje fuera de rango para sprites");
+            return;
+        }
+        imagenPersonaje.sprite = sprites[indiceActual];
     }
     
 }
