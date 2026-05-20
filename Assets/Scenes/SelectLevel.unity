@@ -896,7 +896,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 97690656
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -940,7 +940,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 2.2304382, w: 0}
+  m_margin: {x: 0, y: 0, z: -70.12795, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -970,7 +970,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00001812, y: -119.2}
+  m_AnchoredPosition: {x: -35.219, y: -119.2}
   m_SizeDelta: {x: 152.0038, y: 44.6671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &500000001
@@ -1481,8 +1481,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: 14}
-  m_SizeDelta: {x: 129.6298, y: 190.632}
+  m_AnchoredPosition: {x: 0.000019073, y: 32}
+  m_SizeDelta: {x: 152.2639, y: 223.9174}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165618696
 MonoBehaviour:
@@ -2176,7 +2176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelectorNivelPersonaje
   panelNiveles: {fileID: 906151850}
   panelPersonajes: {fileID: 958374806}
-  btn_atras: {fileID: 0}
+  btn_atras: {fileID: 1492188358}
   btn_siguiente: {fileID: 600000005}
   btn_select: {fileID: 2108195564}
   btn_close: {fileID: 1906173092}
@@ -2680,8 +2680,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000024796, y: -167.23}
-  m_SizeDelta: {x: 198.3748, y: 51.3994}
+  m_AnchoredPosition: {x: 0.000027475, y: -191}
+  m_SizeDelta: {x: 284.6526, y: 73.7542}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2108195562
 MonoBehaviour:
