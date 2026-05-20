@@ -3,8 +3,8 @@ using UnityEngine;
 public class CamaraController : MonoBehaviour
 {
     public Transform objetivo;
-    public float velocidadCamara = 0.025f;
-    public Vector3 desplazamiento;
+    public float velocidadCamara = 0.045f;
+    public Vector3 desplazamiento = new Vector3 (2f, 2f, -10f);
 
     void LateUpdate()
     {
