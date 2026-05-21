@@ -63,11 +63,11 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("movement", velocidadX);
 	    if (velocidadX > 0)
         {
-            transform.localScale = new Vector3(4, 4, 4);
+            transform.localScale = new Vector3(5, 5, 5);
         }
         if (velocidadX < 0f)
         {
-            transform.localScale = new Vector3(-4, 4, 4);
+            transform.localScale = new Vector3(-5, 5, 5);
         }
 	    Vector3 posicion = transform.position;
         

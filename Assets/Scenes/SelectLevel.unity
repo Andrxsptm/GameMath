@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 90876218}
   - component: {fileID: 90876217}
   m_Layer: 5
-  m_Name: MenuNiveles
+  m_Name: CanvaMenuNiveles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 364333768}
   - component: {fileID: 364333767}
   m_Layer: 5
-  m_Name: TrasicionEscena
+  m_Name: CanvaTransicion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -570,7 +570,7 @@ Canvas:
   m_GameObject: {fileID: 364333766}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

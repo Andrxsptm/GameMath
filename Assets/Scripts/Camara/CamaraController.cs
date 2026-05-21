@@ -16,7 +16,7 @@ public class CamaraController : MonoBehaviour
 
         if (objetivo == null) return;
 
-        Vector3 posicionDeseada = objetivo.position + desplazamiento;
+        Vector3 posicionDeseada = new Vector3(objetivo.position.x + desplazamiento.x, transform.position.y, transform.position.z);
         Vector3 posicionSuavizada = Vector3.Lerp(transform.position, posicionDeseada, velocidadCamara);
         transform.position = posicionSuavizada;
     }
