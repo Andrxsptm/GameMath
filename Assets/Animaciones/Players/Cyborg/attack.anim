@@ -31,7 +31,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.43333334
+        time: 0.35
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -40,7 +40,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.55
+        time: 0.43333334
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -49,7 +49,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.75
+        time: 0.6
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -58,7 +58,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.85
+        time: 0.6666667
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -79,21 +79,21 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -4833400546280091550, guid: 8f4d6bba682d11e4a86d7135154c7c5a, type: 3}
-    - time: 0.1
+    - time: 0.06666667
       value: {fileID: 872309414920885250, guid: 8f4d6bba682d11e4a86d7135154c7c5a, type: 3}
-    - time: 0.21666667
+    - time: 0.16666667
       value: {fileID: -2062386990227066661, guid: 8f4d6bba682d11e4a86d7135154c7c5a, type: 3}
-    - time: 0.31666666
+    - time: 0.25
       value: {fileID: 7042338187440017697, guid: 8f4d6bba682d11e4a86d7135154c7c5a, type: 3}
-    - time: 0.43333334
+    - time: 0.35
       value: {fileID: -8262678445180476393, guid: 8f4d6bba682d11e4a86d7135154c7c5a, type: 3}
-    - time: 0.53333336
+    - time: 0.41666666
       value: {fileID: -4690738877353886737, guid: 8f4d6bba682d11e4a86d7135154c7c5a, type: 3}
-    - time: 0.6333333
+    - time: 0.5
       value: {fileID: 4684014374221009176, guid: 8f4d6bba682d11e4a86d7135154c7c5a, type: 3}
-    - time: 0.75
+    - time: 0.6
       value: {fileID: -2966765065008403710, guid: 8f4d6bba682d11e4a86d7135154c7c5a, type: 3}
-    - time: 0.85
+    - time: 0.6666667
       value: {fileID: -4833400546280091550, guid: 8f4d6bba682d11e4a86d7135154c7c5a, type: 3}
     attribute: m_Sprite
     path: 
@@ -140,7 +140,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8666667
+    m_StopTime: 0.68333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -170,7 +170,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.43333334
+        time: 0.35
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -179,7 +179,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.55
+        time: 0.43333334
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -188,7 +188,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.75
+        time: 0.6
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -197,7 +197,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.85
+        time: 0.6666667
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -217,7 +217,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.85
+  - time: 0.6666667
     functionName: DesactivaAtaque
     data: 
     objectReferenceParameter: {fileID: 0}

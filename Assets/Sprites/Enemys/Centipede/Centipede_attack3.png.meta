@@ -118,12 +118,12 @@ TextureImporter:
       name: Centipede_attack3_0
       rect:
         serializedVersion: 2
-        x: 23
+        x: 24
         y: 0
-        width: 49
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 47
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.46}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -140,12 +140,12 @@ TextureImporter:
       name: Centipede_attack3_1
       rect:
         serializedVersion: 2
-        x: 97
+        x: 98
         y: 0
-        width: 48
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 46
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49926424}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: Centipede_attack3_2
       rect:
         serializedVersion: 2
-        x: 170
+        x: 171
         y: 0
-        width: 47
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 45
+        height: 32
+      alignment: 9
+      pivot: {x: 0.50000036, y: 0.509721}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: Centipede_attack3_3
       rect:
         serializedVersion: 2
-        x: 218
+        x: 219
         y: 0
-        width: 70
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 68
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5029259, y: 0.6129874}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -206,12 +206,12 @@ TextureImporter:
       name: Centipede_attack3_4
       rect:
         serializedVersion: 2
-        x: 288
+        x: 289
         y: 0
-        width: 72
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 70
+        height: 26
+      alignment: 9
+      pivot: {x: 0.5031224, y: 0.61971253}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -228,12 +228,12 @@ TextureImporter:
       name: Centipede_attack3_5
       rect:
         serializedVersion: 2
-        x: 373
+        x: 374
         y: 0
-        width: 59
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 57
+        height: 31
+      alignment: 9
+      pivot: {x: 0.50357485, y: 0.5323146}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8b284b499beca3d49b461ef651dc9e0c
     internalID: 0
     vertices: []
     indices: 
@@ -258,7 +258,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.46000000834465029},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Centipede_attack3_0: 3657157753095123412
       Centipede_attack3_1: 371041804031498727
