@@ -1,52 +1,31 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CharacterSpawner : MonoBehaviour
 {
     public static GameObject PersonajeActual { get; private set; }
 
     public Vector3 spawnPosition = new Vector3(-10.36f, -3.27f, 0);
-    public GameObject cyborgPrefab;
-    public GameObject bikerPrefab;
+    public List<GameObject> personajesPrefabs = new List<GameObject>();
 
     void Start()
     {
         int savedIndex = PlayerPrefs.GetInt("CharacterIndex", 0);
-        string savedName = PlayerPrefs.GetString("SelectedCharacter", "Biker");
-
-        Debug.Log("CharacterSpawner: Index guardado = " + savedIndex + ", Nombre guardado = " + savedName);
 
         GameObject characterToSpawn = null;
 
-        // Usar índice para decidir
-        if (savedIndex == 0 && bikerPrefab != null)
+        if (savedIndex >= 0 && savedIndex < personajesPrefabs.Count && personajesPrefabs[savedIndex] != null)
         {
-            characterToSpawn = bikerPrefab;
-            Debug.Log("CharacterSpawner: Instanciando Biker (índice 0)");
+            characterToSpawn = personajesPrefabs[savedIndex];
         }
-        else if (savedIndex == 1 && cyborgPrefab != null)
+        else if (personajesPrefabs.Count > 0 && personajesPrefabs[0] != null)
         {
-            characterToSpawn = cyborgPrefab;
-            Debug.Log("CharacterSpawner: Instanciando Cyborg (índice 1)");
-        }
-        else
-        {
-            // Fallback: si no coincide ningún índice, usar el primer prefab disponible
-            if (bikerPrefab != null)
-            {
-                characterToSpawn = bikerPrefab;
-                Debug.Log("CharacterSpawner: Fallback a Biker");
-            }
-            else if (cyborgPrefab != null)
-            {
-                characterToSpawn = cyborgPrefab;
-                Debug.Log("CharacterSpawner: Fallback a Cyborg");
-            }
+            characterToSpawn = personajesPrefabs[0];
         }
 
         if (characterToSpawn != null)
         {
             PersonajeActual = Instantiate(characterToSpawn, spawnPosition, Quaternion.identity);
-            Debug.Log("Personaje instanciado correctamente: " + PersonajeActual.name);
         }
         else
         {

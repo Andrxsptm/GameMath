@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using NUnit.Framework;
 using System.Collections.Generic;
 
 public class SelectorNivelPersonaje : MonoBehaviour
@@ -9,6 +8,10 @@ public class SelectorNivelPersonaje : MonoBehaviour
     [Header("Paneles")]
     public GameObject panelNiveles;
     public GameObject panelPersonajes;
+
+    [Header("Niveles")]
+    [SerializeField] private Button[] botonesNiveles;
+    [SerializeField] private GameObject[] candadoNiveles;
 
     [Header("Botones Panel Personajes")]
     public Button btn_atras;
@@ -20,7 +23,6 @@ public class SelectorNivelPersonaje : MonoBehaviour
     public TextMeshProUGUI textoPersonajeSeleccionado;
     public Image imagenPersonaje; 
     public List<Sprite> sprites = new List<Sprite>();
-
 
     [Header("Referencia Transición")]
     public TransicionEscena transicionEscena;
@@ -42,17 +44,27 @@ public class SelectorNivelPersonaje : MonoBehaviour
         if (panelNiveles != null)
             panelNiveles.SetActive(true);
 
+        ProgresoJuego.CargarProgreso();
+
+        for (int i = 0; i < botonesNiveles.Length; i++)
+        {
+            bool desbloqueado = i < ProgresoJuego.nivelDesbloqueado;
+            botonesNiveles[i].interactable = desbloqueado;
+
+            if (i < candadoNiveles.Length && candadoNiveles[i] != null)
+                candadoNiveles[i].SetActive(!desbloqueado);
+        }
     }
     private void ConfigurarBotones()
     {
         if (btn_atras != null)
         {
-           
-             btn_atras.onClick.AddListener(AnteriorPersonaje);
+            btn_atras.onClick.RemoveAllListeners();
+            btn_atras.onClick.AddListener(AnteriorPersonaje);
         }
         if (btn_siguiente != null)
         {
-           
+            btn_siguiente.onClick.RemoveAllListeners();
             btn_siguiente.onClick.AddListener(SiguientePersonaje);
         }
         if (btn_select != null)

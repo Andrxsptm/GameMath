@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
     //vidas
     public int vida = 3;
 
+    [Header("Escala del personaje")]
+    public Vector3 escalaPersonaje = new Vector3(5f, 5f, 5f);
+
     [Header ("Doble salto")]
     public bool dobleSaltoDesbloqueado = false;
     private bool puedeDobleSaltar = false;
@@ -149,12 +152,12 @@ public class PlayerController : MonoBehaviour
 
         if (velocidadX > 0)
         {
-            transform.localScale = new Vector3(5, 5, 5);
+            transform.localScale = new Vector3(escalaPersonaje.x, escalaPersonaje.y, escalaPersonaje.z);
         }
 
         if (velocidadX < 0f)
         {
-            transform.localScale = new Vector3(-5, 5, 5);
+            transform.localScale = new Vector3(-escalaPersonaje.x, escalaPersonaje.y, escalaPersonaje.z);
         }
 
         Vector3 posicion = transform.position;
@@ -174,16 +177,20 @@ public class PlayerController : MonoBehaviour
             if (vida <= 0)
             {
                 muerto = true;
-                if (GameManager.Instance != null)
-                {
-                    GameManager.Instance.GameOver();
-                }
             }
             if (!muerto)
             {
                 Vector2 rebote = new Vector2(transform.position.x - direccion.x, 0.5f).normalized;
                 rb.AddForce(rebote * fuerzaRebote, ForceMode2D.Impulse);
             }
+        }
+    }
+
+    public void MostrarGameOver()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameOver();
         }
     }
 

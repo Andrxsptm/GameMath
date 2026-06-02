@@ -16,6 +16,12 @@ public class CharacterSelector : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
+            Instance.personajes.Clear();
+            Instance.personajes.AddRange(personajes);
+            Instance.CurrentCharacterIndex = Mathf.Clamp(
+                PlayerPrefs.GetInt("CharacterIndex", 0),
+                0, Instance.personajes.Count - 1);
+            Instance.SetPersonaje(Instance.CurrentCharacterIndex);
             Destroy(gameObject);
             return;
         }
@@ -29,6 +35,10 @@ public class CharacterSelector : MonoBehaviour
         // Asegurar que el índice sea válido
         if (personajes.Count > 0)
         {
+            string orden = "";
+            for (int i = 0; i < personajes.Count; i++)
+                orden += i + ":" + (personajes[i] != null ? personajes[i].name : "null") + " ";
+            Debug.Log("Orden personajes al iniciar: " + orden);
             CurrentCharacterIndex = Mathf.Clamp(CurrentCharacterIndex, 0, personajes.Count - 1);
             SetPersonaje(CurrentCharacterIndex);
         }
@@ -43,19 +53,17 @@ public class CharacterSelector : MonoBehaviour
         
         PlayerPrefs.SetInt("CharacterIndex", CurrentCharacterIndex);
         nombrePersonajeActual = SelectedCharacter.name;
-        Debug.Log("Personaje seleccionado: " + nombrePersonajeActual);
+        Debug.Log("Personaje seleccionado [" + CurrentCharacterIndex + "]: " + nombrePersonajeActual);
     }
 
     public void SiguientePersonaje()
     {
-        int nuevoIndex = (CurrentCharacterIndex + 1 + personajes.Count) % personajes.Count;
-        SetPersonaje(nuevoIndex);
+        SetPersonaje(CurrentCharacterIndex + 1);
     }
 
     public void AnteriorPersonaje()
     {
-       int nuevoIndex = (CurrentCharacterIndex - 1 ) % personajes.Count;
-        SetPersonaje(nuevoIndex);
+        SetPersonaje(CurrentCharacterIndex - 1);
     }
 
     public void SelectByName(string nombre)

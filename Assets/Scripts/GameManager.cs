@@ -13,6 +13,14 @@ public class GameManager : MonoBehaviour
     public Button reiniciarButton;
     public Button menuButton;
     private bool gameOverActivo = false;
+    private bool panelWinActivo;
+
+    [Header("PanelWin")]
+    public Button btnNiveles;
+    public Button btnSiguienteNivel;
+    public Button btnSalir;
+    [SerializeField] private string siguienteNivel = "Lvl2";
+    [SerializeField] private int nivelActual = 1;
 
     [Header("Monedas")]
     public int monedas = 0;
@@ -56,7 +64,21 @@ public class GameManager : MonoBehaviour
         {
             menuButton.onClick.AddListener(VolverAlMenu);
         }
-        
+        if (btnNiveles != null)
+        {
+            btnNiveles.onClick.AddListener(CargarSelectLevel);
+        }
+        if (btnSiguienteNivel != null)
+        {
+            btnSiguienteNivel.onClick.AddListener(CargarSiguienteNivel);
+            btnSiguienteNivel.gameObject.SetActive(!string.IsNullOrEmpty(siguienteNivel));
+        }
+        if (btnSalir != null)
+        {
+            btnSalir.onClick.AddListener(CargarMenuInitial);
+        }
+
+        ProgresoJuego.CargarProgreso();
         cargarMonedayPuntos();
         ActualizarMonedasyPuntos();
         BuscarJugador();
@@ -168,10 +190,43 @@ public class GameManager : MonoBehaviour
 
     public void AbrirPanelWin()
     {
+        if (panelWinActivo) return;
+
+        panelWinActivo = true;
+        interfazVisible = false;
+
+        if (MonedasText != null)
+            MonedasText.gameObject.SetActive(false);
+
+        if (PuntosText != null)
+            PuntosText.gameObject.SetActive(false);
+
+        if (monedaIcon != null)
+            monedaIcon.gameObject.SetActive(false);
+
         if (panelWin != null)
         {
+            ProgresoJuego.DesbloquearSiguienteNivel(nivelActual + 1);
             panelWin.SetActive(true);
         }
+    }
+
+    private void CargarSelectLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("SelectLevel");
+    }
+
+    private void CargarSiguienteNivel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(siguienteNivel);
+    }
+
+    private void CargarMenuInitial()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MenuInitial");
     }
 
     private void ReiniciarJuego()

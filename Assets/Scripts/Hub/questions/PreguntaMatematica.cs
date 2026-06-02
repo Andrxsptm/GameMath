@@ -29,6 +29,7 @@ public class PreguntaMatematica : MonoBehaviour
     public bool respuestaValida = false;
     private int intentosRestantes;
     private bool panelAbierto = false;
+    private bool esperandoCierre = false;
     private PlayerController jugadorActual;
 
     void Start()
@@ -97,6 +98,7 @@ public class PreguntaMatematica : MonoBehaviour
             return;
 
         panelAbierto = true;
+        esperandoCierre = false;
         jugadorActual = jugador;
         intentosRestantes = intentosMaximos;
         GenerarPregunta();
@@ -123,6 +125,12 @@ public class PreguntaMatematica : MonoBehaviour
 
         if (reanudarMundo)
             ReactivarJugador();
+    }
+
+    IEnumerator CerrarPanelConDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        CerrarPanel(true);
     }
 
     IEnumerator ActivarInput()
@@ -202,9 +210,10 @@ public class PreguntaMatematica : MonoBehaviour
             {
                 textoFeedback.text = "¡Correcto! Avanzando...";
                 respuestaValida = true;
-                CerrarPanel(true);
-                // Notificar que la respuesta fue correcta
+                esperandoCierre = true;
+                inputRespuesta.interactable = false;
                 OnRespuestaResuelta?.Invoke(true);
+                StartCoroutine(CerrarPanelConDelay());
             }
             else
             {

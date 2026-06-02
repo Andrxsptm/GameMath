@@ -4,12 +4,14 @@ using UnityEngine.UI;
 public class BarraVidaFija : MonoBehaviour
 {
     public Image rellenoBarraVida;
-    private EnemyController EnemyController;
+    private IDaniable daniable;
     private float vidaMaxima;
+    private Vector2 posicionInicial;
 
     void Start()
     {
-        BuscarEnemigo();
+        posicionInicial = transform.localPosition;
+        BuscarDaniable();
     }
 
     void Update()
@@ -19,24 +21,41 @@ public class BarraVidaFija : MonoBehaviour
             return;
         }
 
-        if (EnemyController == null)
+        if (daniable == null)
         {
-            BuscarEnemigo();
+            BuscarDaniable();
         }
 
-        if (EnemyController != null && vidaMaxima > 0)
+        if (daniable != null && vidaMaxima > 0)
         {
-            rellenoBarraVida.fillAmount = (float)EnemyController.vida / vidaMaxima;
+            rellenoBarraVida.fillAmount = (float)daniable.vida / vidaMaxima;
+        }
+
+        ContrarrestarEscalaPadre();
+    }
+
+    private void ContrarrestarEscalaPadre()
+    {
+        if (transform.parent != null)
+        {
+            float signoX = Mathf.Sign(transform.parent.localScale.x);
+
+            Vector3 escala = transform.localScale;
+            escala.x = signoX * Mathf.Abs(escala.x);
+            transform.localScale = escala;
+
+            Vector3 posicion = transform.localPosition;
+            posicion.x = posicionInicial.x * signoX;
+            transform.localPosition = posicion;
         }
     }
 
-    private void BuscarEnemigo()
+    private void BuscarDaniable()
     {
-        EnemyController = FindFirstObjectByType<EnemyController>();
-        if (EnemyController != null)
+        daniable = GetComponentInParent<IDaniable>();
+        if (daniable != null)
         {
-            vidaMaxima = EnemyController.vida;
+            vidaMaxima = daniable.vida;
         }
     }
 }
-

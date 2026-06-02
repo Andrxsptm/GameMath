@@ -1,22 +1,28 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class RobberController : MonoBehaviour, IDaniable
 {
     [SerializeField] private PlayerController playerController;
-     [SerializeField] private Vector2 escalaPersonaje = new Vector2(2f, 2f);
-     [SerializeField] private Transform puntoAtaque;
+    [SerializeField] private Vector2 escalaPersonaje = new Vector2(2f, 2f);
     
     //movimiento y deteccion
     public float radioDeteccion = 5f;
+    [SerializeField] private float radioAtaque = 1.5f;
     public float velocidadMovimiento = 2f;
-   
+    [SerializeField] private float velocidadSeguimiento = 4f;
+    [SerializeField] private float tiempoEntreAtaques = 1f;
+    
     private Rigidbody2D rb;
+    private float velocidadActual;
+    private float ultimoAtaque;
     private float movementX;
     private bool enMovimiento;
+    private bool corriendo;
     private bool estaPausado;
     private bool atacando = false;
     private Vector2 velocidadGuardada;
+    private bool patrullandoHaciaDerecha = true;
 
     //daño
     private bool recibiendoDanio;
@@ -26,13 +32,12 @@ public class EnemyController : MonoBehaviour
     
     //vida
     private bool muerto;
+    private bool esperandoChoque;
 
-    public int vida = 3;
-    private bool PlayerVivo;
+    public int vida { get; set; } = 3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PlayerVivo = true;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         BuscarJugadorActivo();
@@ -47,14 +52,23 @@ public class EnemyController : MonoBehaviour
         {
             movementX = 0;
             enMovimiento = false;
+            corriendo = false;
             animator.SetBool("enMovimiento", false);
+            animator.SetBool("corriendo", false);
             return;
         }
-        if (PlayerVivo && !muerto)
+        if (!muerto && playerController != null && !playerController.muerto)
         {
             Movimiento();
         }
+        else
+        {
+            enMovimiento = false;
+            corriendo = false;
+        }
         animator.SetBool("enMovimiento", enMovimiento);
+        animator.SetBool("corriendo", corriendo);
+        animator.SetBool("recibeDanio", recibiendoDanio);
         animator.SetBool("muerto", muerto);
         animator.SetBool("atacando", atacando);
 
@@ -83,6 +97,7 @@ public class EnemyController : MonoBehaviour
             animator.speed = 0f;
 
         enMovimiento = false;
+        corriendo = false;
         estaPausado = true;
     }
 
@@ -111,48 +126,115 @@ public class EnemyController : MonoBehaviour
 
     private void Movimiento()
     {
+        if (esperandoChoque)
+            return;
+
         Transform player = playerController.transform;
-         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer < radioDeteccion)
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (atacando)
         {
+            movementX = 0;
+            velocidadActual = 0;
+            enMovimiento = false;
+            corriendo = false;
+        }
+        else if (distanceToPlayer < radioAtaque && Time.time >= ultimoAtaque + tiempoEntreAtaques)
+        {
+            movementX = 0;
+            velocidadActual = 0;
+            enMovimiento = false;
+            corriendo = false;
+            ultimoAtaque = Time.time;
+            atacando = true;
             Vector2 direction = (player.position - transform.position).normalized;
             if (direction.x > 0)
-            {
-                transform.localScale = new Vector3(-Mathf.Abs(escalaPersonaje.x), escalaPersonaje.y, transform.localScale.z); // Mirar a la derecha
-            }
+                transform.localScale = new Vector3(Mathf.Abs(escalaPersonaje.x), escalaPersonaje.y, transform.localScale.z);
             else
-            {
-                transform.localScale = new Vector3(Mathf.Abs(escalaPersonaje.x), escalaPersonaje.y, transform.localScale.z); // Mirar a la izquierda
-            }
-            movementX = direction.x;
-            enMovimiento = true;
+                transform.localScale = new Vector3(-Mathf.Abs(escalaPersonaje.x), escalaPersonaje.y, transform.localScale.z);
+        }
+        else if (distanceToPlayer < radioDeteccion)
+        {
+            SeguirJugador(player);
         }
         else
         {
-            movementX = 0;
-            enMovimiento = false;
+            Patrullar();
         }
+
         if (!recibiendoDanio)
         {
-           rb.linearVelocity = new Vector2(movementX * velocidadMovimiento, rb.linearVelocity.y);
+           rb.linearVelocity = new Vector2(movementX * velocidadActual, rb.linearVelocity.y);
         }
     }
+
+    public void DesactivarAtaque()
+    {
+        atacando = false;
+    }
+
+    private void SeguirJugador(Transform player)
+    {
+        Vector2 direction = (player.position - transform.position).normalized;
+        if (direction.x > 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(escalaPersonaje.x), escalaPersonaje.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(escalaPersonaje.x), escalaPersonaje.y, transform.localScale.z);
+        }
+        movementX = direction.x;
+        velocidadActual = velocidadSeguimiento;
+        enMovimiento = false;
+        corriendo = true;
+    }
+
+    private void Patrullar()
+    {
+        movementX = patrullandoHaciaDerecha ? 1f : -1f;
+        velocidadActual = velocidadMovimiento;
+        
+        if (movementX > 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(escalaPersonaje.x), escalaPersonaje.y, transform.localScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(escalaPersonaje.x), escalaPersonaje.y, transform.localScale.z);
+        }
+        
+        enMovimiento = true;
+        corriendo = false;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayerController playerGolpeado = collision.gameObject.GetComponentInParent<PlayerController>();
-        if (playerGolpeado != null)
+        if (!atacando && !recibiendoDanio && !esperandoChoque)
         {
-            ActivarAtaque(playerGolpeado);
-        }
-    } 
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponentInParent<PlayerController>() != null)
-        {
-            atacando = false;
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                if (Mathf.Abs(contact.normal.x) > 0.5f)
+                {
+                    movementX = 0;
+                    enMovimiento = false;
+                    corriendo = false;
+                    rb.linearVelocity = Vector2.zero;
+                    esperandoChoque = true;
+                    StartCoroutine(EsperarCambiarDireccion());
+                    break;
+                }
+            }
         }
     }
+
+    private IEnumerator EsperarCambiarDireccion()
+    {
+        yield return new WaitForSeconds(1.2f);
+        patrullandoHaciaDerecha = !patrullandoHaciaDerecha;
+        esperandoChoque = false;
+    }
+
 
     private bool BuscarJugadorActivo()
     {
@@ -174,18 +256,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void ActivarAtaque(PlayerController playerGolpeado)
-    {
-        atacando = true;
-        Vector2 direccionDanio = new Vector2(transform.position.x, 0);
-        playerGolpeado.RecibeDanio(direccionDanio, 1);
-        PlayerVivo = !playerGolpeado.muerto;
-        if (!PlayerVivo)
-        {
-            enMovimiento = false;
-        }
-    }
-    
     public void RecibeDanio(Vector2 direccion, int cantDanio)
     {
         if(!recibiendoDanio)
@@ -198,6 +268,7 @@ public class EnemyController : MonoBehaviour
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 muerto = true;
                 enMovimiento = false;
+                corriendo = false;
             }
             else
             {
@@ -222,11 +293,12 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    // pa dibujar y ajustar el radio de deteccion del enemigo
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, radioDeteccion);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radioAtaque);
     }
 
 }
