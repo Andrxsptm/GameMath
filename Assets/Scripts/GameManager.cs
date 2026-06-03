@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Button menuButton;
     private bool gameOverActivo = false;
     private bool panelWinActivo;
+    private bool restaurandoPartida = false;
 
     [Header("PanelWin")]
     public Button btnNiveles;
@@ -83,6 +84,12 @@ public class GameManager : MonoBehaviour
         ActualizarMonedasyPuntos();
         BuscarJugador();
         ActualizarEstadoUIJugador();
+
+        if (PartidaGuardada.EstaRestaurando())
+        {
+            restaurandoPartida = true;
+            PartidaGuardada.LimpiarRestauracion();
+        }
     }
 
     // Update is called once per frame
@@ -91,7 +98,16 @@ public class GameManager : MonoBehaviour
     {
         BuscarJugador();
         ActualizarEstadoUIJugador();
-        
+
+        if (restaurandoPartida && jugador != null)
+        {
+            PartidaGuardada.Cargar(out Vector3 posicion, out int vida);
+            jugador.transform.position = posicion;
+            jugador.vida = vida;
+            jugador.muerto = false;
+            restaurandoPartida = false;
+        }
+
         if (gameOverActivo)
         {
             if (Input.GetKeyDown(KeyCode.R))
@@ -107,6 +123,13 @@ public class GameManager : MonoBehaviour
     public void SumarMoneda(int cantidad)
     {
         monedas+=cantidad;
+        ActualizarMonedasyPuntos();
+        guardarMonedayPuntos();
+    }
+
+    public void SumarPuntos(int cantidad)
+    {
+        puntos += cantidad;
         ActualizarMonedasyPuntos();
         guardarMonedayPuntos();
     }

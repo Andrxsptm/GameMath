@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VidaController
   valorVida: 1
+  sonidoVida: {fileID: 8300000, guid: cbc7bae23e9fe174b8710127700ffa31, type: 3}
 --- !u!61 &5433889704721501339
 BoxCollider2D:
   m_ObjectHideFlags: 0

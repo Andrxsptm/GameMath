@@ -152,4 +152,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PreguntaController
   preguntaMatematica: {fileID: 0}
+  sonidoPregunta: {fileID: 8300000, guid: 16c0e4f42a1eb8443a4d827f349bf8e8, type: 3}
   tiempoEsperaReactivacion: 2

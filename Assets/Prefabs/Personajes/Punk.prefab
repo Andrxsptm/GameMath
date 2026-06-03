@@ -154,6 +154,8 @@ GameObject:
   - component: {fileID: 5856016568263402124}
   - component: {fileID: 8866950475561499832}
   - component: {fileID: 259118305723346836}
+  - component: {fileID: -5916789738630797668}
+  - component: {fileID: -1286549922816794295}
   m_Layer: 8
   m_Name: Punk
   m_TagString: Player
@@ -345,6 +347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bc4c1a2cce5234bb57b8e782d86f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  playerSoundControler: {fileID: -1286549922816794295}
+  timeStep: 0.2
   velocidad: 3.5
   animator: {fileID: 1136012798138050101}
   fuerzaSalto: 5.2
@@ -355,4 +359,123 @@ MonoBehaviour:
   fuerzaRebote: 4.2
   muerto: 0
   vida: 3
+  escalaPersonaje: {x: 5, y: 5, z: 5}
   dobleSaltoDesbloqueado: 1
+--- !u!82 &-5916789738630797668
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616919477022530503}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &-1286549922816794295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616919477022530503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b605089a2b9b81a41b147247e717393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSoundControler
+  audioSource: {fileID: -5916789738630797668}
+  sonidoSaltar: {fileID: 8300000, guid: 2eb566c405372b942862d68f330eefef, type: 3}
+  sonidoRecibirDanio: {fileID: 8300000, guid: d9ccbba26120e5e4ea04d88d22457dbe, type: 3}
+  sonidoAtacar: {fileID: 8300000, guid: 10f88cc923aea874288fd37d666a3306, type: 3}
+  sonidoCaida: {fileID: 8300000, guid: 26f8d738912c24441960d4905ff5239d, type: 3}
+  sonidoMuerte: {fileID: 8300000, guid: d999145dfb78878459e412c47274fd02, type: 3}
+  sonidoPatada: {fileID: 8300000, guid: 662d98c41218bc9478d7c286c4564d45, type: 3}
+  sonidoMov1: {fileID: 8300000, guid: 7fe0a6b1331d4ec4da6b8342d73b95d9, type: 3}
+  sonidoMov2: {fileID: 8300000, guid: c417e72fe0e8067449a06386c03cb0f5, type: 3}

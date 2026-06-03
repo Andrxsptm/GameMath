@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour, IDaniable
 {
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Vector2 escalaPersonaje = new Vector2(2f, 2f);
+    public EnemySoundController enemySoundController;
     
     //movimiento y deteccion
     public float radioDeteccion = 5f;
@@ -126,6 +127,7 @@ public class EnemyController : MonoBehaviour, IDaniable
         {
             movementX = 0;
             enMovimiento = false;
+            enemySoundController.playAtacar();
             atacando = true;
             Vector2 direction = (player.position - transform.position).normalized;
             if (direction.x > 0)
@@ -135,10 +137,12 @@ public class EnemyController : MonoBehaviour, IDaniable
         }
         else if (distanceToPlayer < radioDeteccion)
         {
+            
             SeguirJugador(player);
         }
         else
         {
+            
             Patrullar();
         }
 
@@ -240,6 +244,7 @@ public class EnemyController : MonoBehaviour, IDaniable
 
             if (vida <= 0)
             {
+                enemySoundController.playMuerte();
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 muerto = true;
                 enMovimiento = false;
@@ -262,9 +267,9 @@ public class EnemyController : MonoBehaviour, IDaniable
 
     private void DestruirEnemigo()
     {
-       
+        if (GameManager.Instance != null)
+            GameManager.Instance.SumarPuntos(100);
         Destroy(gameObject);
-        
     }
 
     private void OnDrawGizmosSelected()

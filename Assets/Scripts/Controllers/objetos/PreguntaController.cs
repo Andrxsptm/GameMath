@@ -4,6 +4,7 @@ public class PreguntaController : MonoBehaviour
 {
     [Header("Referencia al Panel de Preguntas")]
     [SerializeField] private PreguntaMatematica preguntaMatematica;
+    [SerializeField] private AudioClip sonidoPregunta;
 
     [Header("Configuracion")]
     [Tooltip("Tiempo de espera (segundos) para que el objeto pueda verse y tocarse de nuevo si falla la pregunta")]
@@ -129,6 +130,7 @@ public class PreguntaController : MonoBehaviour
         else
         {
             Debug.Log("[PreguntaController] Respuesta incorrecta. Esperando " + tiempoEsperaReactivacion + " segundos para mostrar de nuevo.");
+            ControladorSonidos.instance.ejecutarSonido(sonidoPregunta);
             // Usamos un Invoke que SIEMPRE funcionara porque el script SIEMPRE esta activo
             Invoke(nameof(MostrarObjeto), tiempoEsperaReactivacion);
         }
@@ -148,6 +150,7 @@ public class PreguntaController : MonoBehaviour
         if (jugador != null)
         {
             // En lugar de desactivar el objeto, solo lo escondemos visualmente
+            ControladorSonidos.instance.ejecutarSonido(sonidoPregunta);
             EsconderObjeto();
             preguntaMatematica.AbrirPanel(jugador);
         }

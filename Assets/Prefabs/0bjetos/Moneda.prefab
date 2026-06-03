@@ -152,3 +152,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonedaController
   valorMoneda: 1
+  sonidoMoneda: {fileID: 8300000, guid: 4b18fe1bd0e6d9b4aa891304f6965f19, type: 3}

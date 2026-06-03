@@ -36,6 +36,9 @@ public class PausaMenuManager : MonoBehaviour
                     case "BtnInicio":
                         btn.onClick.AddListener(IrMenuInicial);
                         break;
+                    case "BtnGuardar":
+                        btn.onClick.AddListener(GuardarPartida);
+                        break;
                 }
             }
             inicializado = true;
@@ -81,6 +84,22 @@ public class PausaMenuManager : MonoBehaviour
 
     public void IrMenuInicial()
     {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MenuInitial");
+    }
+
+    public void GuardarPartida()
+    {
+        PlayerController jugador = FindObjectOfType<PlayerController>();
+        if (jugador != null)
+        {
+            PartidaGuardada.Guardar(
+                SceneManager.GetActiveScene().name,
+                jugador.transform.position,
+                jugador.vida
+            );
+            Debug.Log("Partida guardada en: " + SceneManager.GetActiveScene().name);
+        }
         Time.timeScale = 1f;
         SceneManager.LoadScene("MenuInitial");
     }

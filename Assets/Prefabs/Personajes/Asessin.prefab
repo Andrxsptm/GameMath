@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8747392661658220420}
   - component: {fileID: 2627550122289008430}
   - component: {fileID: 7670320899894816229}
+  - component: {fileID: 5863922860346820947}
+  - component: {fileID: 3402910157039383059}
   m_Layer: 8
   m_Name: Asessin
   m_TagString: Player
@@ -204,6 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bc4c1a2cce5234bb57b8e782d86f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  playerSoundControler: {fileID: 5863922860346820947}
+  timeStep: 0.22
   velocidad: 3.5
   animator: {fileID: 6298545934020036955}
   fuerzaSalto: 5.85
@@ -216,6 +220,124 @@ MonoBehaviour:
   vida: 3
   escalaPersonaje: {x: 1, y: 1, z: 1}
   dobleSaltoDesbloqueado: 1
+--- !u!114 &5863922860346820947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529400019632335714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b605089a2b9b81a41b147247e717393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSoundControler
+  audioSource: {fileID: 3402910157039383059}
+  sonidoSaltar: {fileID: 8300000, guid: 2eb566c405372b942862d68f330eefef, type: 3}
+  sonidoRecibirDanio: {fileID: 8300000, guid: d9ccbba26120e5e4ea04d88d22457dbe, type: 3}
+  sonidoAtacar: {fileID: 8300000, guid: 1eecd64b81f63ae4f823b5074ef2eeb9, type: 3}
+  sonidoCaida: {fileID: 8300000, guid: 26f8d738912c24441960d4905ff5239d, type: 3}
+  sonidoMuerte: {fileID: 8300000, guid: 084ee748eaa0d274992baba240a94200, type: 3}
+  sonidoPatada: {fileID: 0}
+  sonidoMov1: {fileID: 8300000, guid: 7fe0a6b1331d4ec4da6b8342d73b95d9, type: 3}
+  sonidoMov2: {fileID: 8300000, guid: c417e72fe0e8067449a06386c03cb0f5, type: 3}
+--- !u!82 &3402910157039383059
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529400019632335714}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3814151265179473042
 GameObject:
   m_ObjectHideFlags: 0
