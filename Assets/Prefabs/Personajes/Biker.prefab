@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   playerSoundControler: {fileID: 3458575637440313565}
   timeStep: 0.22
-  velocidad: 2.5
+  velocidad: 3.5
   animator: {fileID: 1474345134}
   fuerzaSalto: 5.5
   longitudRaycast: 0.9
@@ -218,7 +218,7 @@ MonoBehaviour:
     m_Bits: 64
   fuerzaRebote: 4
   muerto: 0
-  vida: 3
+  vida: 10
   escalaPersonaje: {x: 5, y: 5, z: 5}
   dobleSaltoDesbloqueado: 1
 --- !u!114 &3458575637440313565

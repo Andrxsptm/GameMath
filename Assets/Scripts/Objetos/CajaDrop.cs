@@ -6,6 +6,7 @@ public class CajaDrop : MonoBehaviour
     public float probabilidadDrop = 0.7f;
 
     private bool destruida = false;
+    [SerializeField] private AudioClip sonidoDestruccion;
 
     private void OnTriggerEnter2D (Collider2D collision)
     {
@@ -17,7 +18,7 @@ public class CajaDrop : MonoBehaviour
     void Destruir()
     {
         destruida = true;
-
+        ControladorSonidos.instance.ejecutarSonido(sonidoDestruccion);
         if (Random.value <= probabilidadDrop && posiblesDrops.Length > 0)
         {
             int index = Random.Range(0, posiblesDrops.Length);

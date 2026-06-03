@@ -108,6 +108,7 @@ public class PreguntaMatematica : MonoBehaviour
 
         panelPregunta.SetActive(true);
 
+        inputRespuesta.interactable = true;
         inputRespuesta.text = "";
         StartCoroutine(ActivarInput());
     }
@@ -129,7 +130,7 @@ public class PreguntaMatematica : MonoBehaviour
 
     IEnumerator CerrarPanelConDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.1f);
         CerrarPanel(true);
     }
 

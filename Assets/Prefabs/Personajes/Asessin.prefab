@@ -217,7 +217,7 @@ MonoBehaviour:
     m_Bits: 64
   fuerzaRebote: 5
   muerto: 0
-  vida: 3
+  vida: 10
   escalaPersonaje: {x: 1, y: 1, z: 1}
   dobleSaltoDesbloqueado: 1
 --- !u!114 &5863922860346820947

@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Button btnNiveles;
     public Button btnSiguienteNivel;
     public Button btnSalir;
+    public TransicionEscena transicionEscena;
     [SerializeField] private string siguienteNivel = "Lvl2";
     [SerializeField] private int nivelActual = 1;
 
@@ -237,19 +238,22 @@ public class GameManager : MonoBehaviour
     private void CargarSelectLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("SelectLevel");
+        if (transicionEscena != null) transicionEscena.CargarEscena("SelectLevel");
+        else SceneManager.LoadScene("SelectLevel");
     }
 
     private void CargarSiguienteNivel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(siguienteNivel);
+        if (transicionEscena != null) transicionEscena.CargarEscena(siguienteNivel);
+        else SceneManager.LoadScene(siguienteNivel);
     }
 
     private void CargarMenuInitial()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MenuInitial");
+        if (transicionEscena != null) transicionEscena.CargarEscena("MenuInitial");
+        else SceneManager.LoadScene("MenuInitial");
     }
 
     private void ReiniciarJuego()

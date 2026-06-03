@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   playerSoundControler: {fileID: 759216355954812960}
   timeStep: 0.21
-  velocidad: 3
+  velocidad: 3.2
   animator: {fileID: 1227848097}
   fuerzaSalto: 5
   longitudRaycast: 0.91
@@ -218,7 +218,7 @@ MonoBehaviour:
     m_Bits: 64
   fuerzaRebote: 4
   muerto: 0
-  vida: 3
+  vida: 10
   escalaPersonaje: {x: 5, y: 5, z: 5}
   dobleSaltoDesbloqueado: 1
 --- !u!82 &5020795207301343756

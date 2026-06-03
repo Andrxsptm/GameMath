@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6419592497909101120}
   - component: {fileID: 4466215638642641445}
   - component: {fileID: 444540481356789300}
-  - component: {fileID: 2759750034773677374}
+  - component: {fileID: 969228294579242165}
   m_Layer: 6
   m_Name: cajaDrop
   m_TagString: Untagged
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: f1b2d74f509618249bcd554cf14141e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -167,7 +167,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2759750034773677374
+--- !u!114 &969228294579242165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,3 +185,4 @@ MonoBehaviour:
   - {fileID: 8754318882860618911, guid: ba2c11bbf0597ec499faf3136dfeb305, type: 3}
   - {fileID: 1023232066264758337, guid: c3cf7f943acaee646841e31f08b4dcb2, type: 3}
   probabilidadDrop: 0.7
+  sonidoDestruccion: {fileID: 8300000, guid: e956157f2813a95459b790b4ee85a35b, type: 3}

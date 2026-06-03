@@ -53,8 +53,7 @@ PrefabInstance:
       value: cajaPreg
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: -559093581121880689, guid: 3e2fe4819921bca4face12afad6ee04d, type: 3}
-    - {fileID: 2759750034773677374, guid: 3e2fe4819921bca4face12afad6ee04d, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -80,3 +79,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CajaPregunta
   ObjectoPregunta: {fileID: 3027035985375358785, guid: 1d480d08a2ecd3140a257d461854f6bc, type: 3}
+  sonidoDestruccion: {fileID: 8300000, guid: e956157f2813a95459b790b4ee85a35b, type: 3}

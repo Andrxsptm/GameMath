@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     
     //vidas
-    public int vida = 3;
+    public int vida = 10;
 
     [Header("Escala del personaje")]
     public Vector3 escalaPersonaje = new Vector3(5f, 5f, 5f);
