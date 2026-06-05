@@ -8,7 +8,7 @@ public class TransicionEscena : MonoBehaviour
     [SerializeField] private AnimationClip animacionFinal;
     private bool cargando = false;
 
-    private void Start()
+    private void Awake()
     {
         animator = GetComponent<Animator>();
     }
@@ -17,13 +17,31 @@ public class TransicionEscena : MonoBehaviour
     {
         if (cargando) return;
         cargando = true;
-        StartCoroutine(CambiarEscena(nombreEscena));
+
+        ActivarEnLaJerarquia();
+
+        if (animator == null) animator = GetComponent<Animator>();
+        if (animator != null) animator.SetTrigger("Iniciar");
+
+        MonoBehaviour runner = (GameManager.Instance != null) ? (MonoBehaviour)GameManager.Instance : this;
+        runner.StartCoroutine(EsperarYCambiar(nombreEscena));
     }
 
-    IEnumerator CambiarEscena(string nombreEscena)
+    private void ActivarEnLaJerarquia()
     {
-        if (animator != null)
-            animator.SetTrigger("Iniciar");
+        if (gameObject.activeInHierarchy) return;
+
+        Transform t = transform.parent;
+        while (t != null)
+        {
+            if (!t.gameObject.activeSelf) t.gameObject.SetActive(true);
+            t = t.parent;
+        }
+        gameObject.SetActive(true);
+    }
+
+    private IEnumerator EsperarYCambiar(string nombreEscena)
+    {
         float waitTime = animacionFinal != null ? animacionFinal.length : 0f;
         yield return new WaitForSeconds(waitTime);
         SceneManager.LoadScene(nombreEscena);
